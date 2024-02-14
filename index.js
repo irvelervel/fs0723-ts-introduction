@@ -73,3 +73,34 @@ console.log(hello2.toUpperCase());
 var y = 50;
 y = 'strapazzami';
 // in TS potete dare un nome ai vostri tipi personalizzati
+// ARRAY in TS
+var arrayOfNames = ['Michela', 'Antonio', 'Elisa', 'Alex', 'Alessandro'];
+// TS ha automaticamente dedotto il tipo "array di stringhe" --> string[] oppure Array<string>
+var arrayOfNumbers = [];
+arrayOfNumbers.push(50);
+arrayOfNumbers.push(500.5);
+// arrayOfNumbers.push('topogigio') // "topogigio" non è un numero
+arrayOfNames.push('Topo Gigio');
+var arrayOfNevers = []; // array inutile! un array di never non serve a niente :(
+var mixedArray = ['stefano']; // Array<string | boolean>
+mixedArray.push(true);
+console.log(mixedArray);
+arrayOfNames.forEach(function (name) {
+    console.log(name.length.toString().slice(0, 1)); // torna il primo carattere della lunghezza del nome
+});
+var anotherArrayOfNames = ['Pasquale']; // string[]
+anotherArrayOfNames.push('Antonio');
+anotherArrayOfNames.pop();
+console.log(anotherArrayOfNames.length); // 1
+// un array dichiarato con un'unione di tipi ci permette di inserire al proprio interno un dato con un tipo
+// qualsiasi tra quelli prefissati
+var mistoMareArray = ['stefano', 50, 50, 50, 'epicode'];
+// però non garantisce il numero degli elementi e il loro posizionamento
+// esiste una struttura dati presente SOLO in TS che permette il controllo sul numero degli elementi iniziali
+// e il loro tipo posizione x posizione
+// parliamo della TUPLA
+var myTuple = ['wendy', 10, 'dalila'];
+// dopo la dichiarazione iniziale è possibile pusharci al proprio interno nuove stringhe o numeri
+myTuple.push('stefano');
+myTuple.push('stefano2');
+myTuple.push(50);
