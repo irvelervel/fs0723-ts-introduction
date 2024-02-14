@@ -1,3 +1,4 @@
+var _a;
 console.log('Ciao TypeScript!');
 console.log('ciao di nuovo');
 console.log('ciao terza volta');
@@ -104,3 +105,66 @@ var myTuple = ['wendy', 10, 'dalila'];
 myTuple.push('stefano');
 myTuple.push('stefano2');
 myTuple.push(50);
+// OGGETTI
+var yourEpicodeTeacher = {
+    firstName: 'Stefano',
+    module: 'Frontend',
+    age: 18,
+};
+// grazie type inference!
+console.log(yourEpicodeTeacher.firstName.slice(2, 4));
+var firstTennisPlayer = {
+    firstName: 'Rafael Nadal',
+    favouriteArm: 'left',
+    age: 37,
+    tournamentsWon: 'troppi',
+};
+var secondTennisPlayer = {
+    firstName: 'Andre Agassi',
+    favouriteArm: 'right',
+    age: 53,
+    tournamentsWon: 100,
+};
+var arrayOfTennisPlayers = [];
+// const arrayOfTennisPlayers: Array<TennisPlayer> = []
+arrayOfTennisPlayers.push(firstTennisPlayer);
+arrayOfTennisPlayers.push(secondTennisPlayer);
+// arrayOfTennisPlayers.push('Federer') // questo non è un oggetto di tipo TennisPlayer
+var arrayOfTennisPlayersNames = arrayOfTennisPlayers.map(function (player) { return player.firstName; }); // ['Rafael', 'Andre']
+var mario = {
+    firstName: 'Mario',
+    age: 80,
+    city: 'Pizzocalabro',
+};
+var luigiDev = {
+    yearsOfExp: 5,
+    firstName: 'Luigi',
+    age: 75,
+    city: 'Mushroom Kingdom',
+    language: 'TS',
+};
+var toadDev = {
+    age: 68,
+    yearsOfExp: 1,
+    firstName: 'Toad',
+    city: 'Mushroom Kingdom',
+    // language: 'JAVA' // non è indispensabile in un oggetto Developer
+};
+(_a = toadDev.language) === null || _a === void 0 ? void 0 : _a.slice(0, 1); // il ? è detto "OPTIONAL CHAINING"
+var italianAddress = {
+    street: 'Via dei pinguini',
+    civicNumber: 10,
+    zipCode: 45000,
+    city: 'Cellino S. Marco',
+    area: 'Italy', // string, come il mio generic A!
+};
+var americanAddress = {
+    street: 'Road avenue',
+    civicNumber: 580,
+    zipCode: 435345,
+    city: 'New York',
+    area: {
+        state: 'New York',
+        country: 'USA',
+    },
+};

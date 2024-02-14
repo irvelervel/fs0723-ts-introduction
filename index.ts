@@ -133,3 +133,121 @@ const myTuple: [string, number, string] = ['wendy', 10, 'dalila']
 myTuple.push('stefano')
 myTuple.push('stefano2')
 myTuple.push(50)
+
+// OGGETTI
+const yourEpicodeTeacher = {
+  firstName: 'Stefano',
+  module: 'Frontend',
+  age: 18,
+}
+
+// grazie type inference!
+console.log(yourEpicodeTeacher.firstName.slice(2, 4))
+
+// quando non si conosce il tipo di un oggetto, oppure si vogliono creare degli oggetti tutti dello stesso tipo
+// viene necessario dichiarare il TIPO degli oggetti; è possibile farlo con l'operatore "Type" però
+// per gli oggetti è ancora più comodo dichiarare un'INTERFACCIA
+interface TennisPlayer {
+  firstName: string
+  favouriteArm: string
+  age: number
+  tournamentsWon: number | string
+}
+
+const firstTennisPlayer: TennisPlayer = {
+  firstName: 'Rafael Nadal',
+  favouriteArm: 'left',
+  age: 37,
+  tournamentsWon: 'troppi',
+}
+
+const secondTennisPlayer: TennisPlayer = {
+  firstName: 'Andre Agassi',
+  favouriteArm: 'right',
+  age: 53,
+  tournamentsWon: 100,
+}
+
+const arrayOfTennisPlayers: TennisPlayer[] = []
+// const arrayOfTennisPlayers: Array<TennisPlayer> = []
+
+arrayOfTennisPlayers.push(firstTennisPlayer)
+arrayOfTennisPlayers.push(secondTennisPlayer)
+// arrayOfTennisPlayers.push('Federer') // questo non è un oggetto di tipo TennisPlayer
+
+const arrayOfTennisPlayersNames: string[] = arrayOfTennisPlayers.map(
+  (player) => player.firstName
+) // ['Rafael', 'Andre']
+
+interface HumainBeing {
+  firstName: string
+  age: number
+  city: string
+}
+
+const mario: HumainBeing = {
+  firstName: 'Mario',
+  age: 80,
+  city: 'Pizzocalabro',
+}
+
+interface Developer extends HumainBeing {
+  // abbiamo ereditato firstName, age e city
+  yearsOfExp: number
+  language?: 'JS' | 'TS' | 'JAVA' // il punto di domanda identifica una proprietà OPZIONALE di un oggetto
+}
+
+const luigiDev: Developer = {
+  yearsOfExp: 5,
+  firstName: 'Luigi',
+  age: 75,
+  city: 'Mushroom Kingdom',
+  language: 'TS',
+}
+
+const toadDev: Developer = {
+  age: 68,
+  yearsOfExp: 1,
+  firstName: 'Toad',
+  city: 'Mushroom Kingdom',
+  // language: 'JAVA' // non è indispensabile in un oggetto Developer
+}
+
+toadDev.language?.slice(0, 1) // il ? è detto "OPTIONAL CHAINING"
+
+// GENERICS
+// I GENERICS vengono anche chiamati "type arguments". Sostanzialmente si tratta di parametri passati ad
+// interfacce, che forniscono un tipo. Servono per rendere un po' più "generiche" le interfacce, in modo
+// da poter venire ri-utilizzate più facilmente
+
+interface Address<A = string> {
+  street: string
+  civicNumber: number
+  zipCode: number
+  city: string
+  area: A
+}
+
+const italianAddress: Address = {
+  street: 'Via dei pinguini',
+  civicNumber: 10,
+  zipCode: 45000,
+  city: 'Cellino S. Marco',
+  area: 'Italy', // string, come il mio generic A!
+}
+
+interface USAArea {
+  state: string
+  country: string
+}
+
+const americanAddress: Address<USAArea> = {
+  street: 'Road avenue',
+  civicNumber: 580,
+  zipCode: 435345,
+  city: 'New York',
+  area: {
+    state: 'New York',
+    country: 'USA',
+  },
+}
